@@ -22,6 +22,9 @@ ATTR{idVendor}=="0bda", ATTR{idProduct}=="1a2b", RUN+="/usr/sbin/usb_modeswitch 
 ```
 ### Monitor mode
 Use the tool 'iw', please don't use other tools like 'airmon-ng'
-```
+```make ARCH="arm" CROSS_COMPILE=armv5tel-softfloat-linux-gnueabi- KSRC=/home/linux-master modules
 iw dev wlan0 set monitor none
+
+### Build
+make ARCH="arm" CROSS_COMPILE=armv5tel-softfloat-linux-gnueabi- KSRC=/home/linux-master modules
 ```
