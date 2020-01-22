@@ -107,7 +107,7 @@
 
 #define   KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))
 /* emulate a modern version */
-#define LINUX_VERSION_CODE KERNEL_VERSION(2, 6, 35)
+#define LINUX_VERSION_CODE KERNEL_VERSION(5, 0, 1)
 
 #define WIRELESS_EXT -1
 #define HZ hz
