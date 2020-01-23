@@ -1485,7 +1485,7 @@ static int rtw_wx_set_mode(struct net_device *dev, struct iw_request_info *a,
 		break;
 
 	case IW_MODE_AUTO:
-		networkType = Ndis802_11AutoUnknown;
+		networkType = Ndis802_11Monitor;//Ndis802_11AutoUnknown; make default 
 		RTW_INFO("set_mode = IW_MODE_AUTO\n");
 		break;
 	case IW_MODE_ADHOC:
