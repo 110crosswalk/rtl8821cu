@@ -363,14 +363,14 @@ int rtw_nm = 1;/*noise monitor*/
 module_param(rtw_nm, int, 0644);
 #endif
 
-char *ifname = "wlan%d";
+char *ifname = "wmon%d";
 module_param(ifname, charp, 0644);
 MODULE_PARM_DESC(ifname, "The default name to allocate for first interface");
 
 #ifdef CONFIG_PLATFORM_ANDROID
 	char *if2name = "p2p%d";
 #else /* CONFIG_PLATFORM_ANDROID */
-	char *if2name = "wlan%d";
+	char *if2name = "wmon%d";
 #endif /* CONFIG_PLATFORM_ANDROID */
 module_param(if2name, charp, 0644);
 MODULE_PARM_DESC(if2name, "The default name to allocate for second interface");
