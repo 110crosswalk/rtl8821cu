@@ -1468,56 +1468,36 @@ static int rtw_wx_set_mode(struct net_device *dev, struct iw_request_info *a,
 	} else {
 		rtw_ps_deny_cancel(padapter, PS_DENY_MONITOR_MODE);
 	}
-	wrqu->mode = IW_MODE_MONITOR; //the only mode
-
+	
 	switch (wrqu->mode) {
-	case IW_MODE_MONITOR:
-		networkType = Ndis802_11Monitor;
-#if 0
-		dev->type = ARPHRD_IEEE80211; /* IEEE 802.11 : 801 */
-#endif
+		case IW_MODE_MONITOR:
+			networkType = Ndis802_11Monitor;
+			dev->type = ARPHRD_IEEE80211_RADIOTAP; /* IEEE 802.11 + radiotap header : 803 */
+			RTW_INFO("set_mode = IW_MODE_MONITOR\n");
+			break;
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 24))
-		dev->type = ARPHRD_IEEE80211_RADIOTAP; /* IEEE 802.11 + radiotap header : 803 */
-		RTW_INFO("set_mode = IW_MODE_MONITOR\n");
-#else
-		RTW_INFO("kernel version < 2.6.24 not support IW_MODE_MONITOR\n");
-#endif
-		break;
+		case IW_MODE_AUTO:
+			networkType = Ndis802_11AutoUnknown; 
+			RTW_INFO("set_mode = IW_MODE_AUTO\n");
+			break;
+		case IW_MODE_ADHOC:
+			networkType = Ndis802_11IBSS;
+			RTW_INFO("set_mode = IW_MODE_ADHOC\n");
+			break;
+		case IW_MODE_MASTER:
+			networkType = Ndis802_11APMode;
+			RTW_INFO("set_mode = IW_MODE_MASTER\n");
+			/* rtw_setopmode_cmd(padapter, networkType,_TRUE);	 */
+			break;
+		case IW_MODE_INFRA:
+			networkType = Ndis802_11Infrastructure;
+			RTW_INFO("set_mode = IW_MODE_INFRA\n");
+			break;
 
-	case IW_MODE_AUTO:
-		networkType = Ndis802_11Monitor;//Ndis802_11AutoUnknown; make default 
-		RTW_INFO("set_mode = IW_MODE_AUTO\n");
-		break;
-	case IW_MODE_ADHOC:
-		networkType = Ndis802_11IBSS;
-		RTW_INFO("set_mode = IW_MODE_ADHOC\n");
-		break;
-	case IW_MODE_MASTER:
-		networkType = Ndis802_11APMode;
-		RTW_INFO("set_mode = IW_MODE_MASTER\n");
-		/* rtw_setopmode_cmd(padapter, networkType,_TRUE);	 */
-		break;
-	case IW_MODE_INFRA:
-		networkType = Ndis802_11Infrastructure;
-		RTW_INFO("set_mode = IW_MODE_INFRA\n");
-		break;
-
-	default:
-		ret = -EINVAL;;
-		goto exit;
-	}
-
-	/*
-		if(Ndis802_11APMode == networkType)
-		{
-			rtw_setopmode_cmd(padapter, networkType,_TRUE);
-		}
-		else
-		{
-			rtw_setopmode_cmd(padapter, Ndis802_11AutoUnknown,_TRUE);
-		}
-	*/
+		default:
+			ret = -EINVAL;;
+			goto exit;
+	}//switch
 
 	if (rtw_set_802_11_infrastructure_mode(padapter, networkType) == _FALSE) {
 
