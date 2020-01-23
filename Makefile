@@ -79,6 +79,13 @@ CONFIG_RTW_WIFI_HAL = y
 CONFIG_RTW_DEBUG = y
 # default log level is _DRV_INFO_ = 4,
 # please refer to "How_to_set_driver_debug_log_level.doc" to set the available level.
+	#"_DRV_NONE_ = 0",
+	#"_DRV_ALWAYS_ = 1",
+	#"_DRV_ERR_ = 2",
+	#"_DRV_WARNING_ = 3",
+	#"_DRV_INFO_ = 4",
+	#"_DRV_DEBUG_ = 5",
+	#"_DRV_MAX_ = 6",
 CONFIG_RTW_LOG_LEVEL = 4
 ######################## Wake On Lan ##########################
 CONFIG_WOWLAN = n
