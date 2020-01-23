@@ -1468,6 +1468,7 @@ static int rtw_wx_set_mode(struct net_device *dev, struct iw_request_info *a,
 	} else {
 		rtw_ps_deny_cancel(padapter, PS_DENY_MONITOR_MODE);
 	}
+	wrqu->mode = IW_MODE_MONITOR; //the only mode
 
 	switch (wrqu->mode) {
 	case IW_MODE_MONITOR:
