@@ -86,7 +86,7 @@ CONFIG_RTW_DEBUG = y
 	#"_DRV_INFO_ = 4",
 	#"_DRV_DEBUG_ = 5",
 	#"_DRV_MAX_ = 6",
-CONFIG_RTW_LOG_LEVEL = 4
+CONFIG_RTW_LOG_LEVEL = 6
 ######################## Wake On Lan ##########################
 CONFIG_WOWLAN = n
 CONFIG_WAKEUP_TYPE = 0x7 #bit2: deauth, bit1: unicast, bit0: magic pkt.
