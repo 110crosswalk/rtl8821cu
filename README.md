@@ -33,5 +33,6 @@ iw dev wlan0 set monitor none
 
 
 ### Build
+sudo apt-get install linux-headers-$(uname -r)
 make ARCH="arm" CROSS_COMPILE=armv5tel-softfloat-linux-gnueabi- KSRC=/home/linux-master modules
 ```
